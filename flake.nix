@@ -1,4 +1,4 @@
-	description = "NixOS ja Home Manager - konfiguraatio";
+{   description = "NixOS ja Home Manager - konfiguraatio";
 
 	inputs = {
 	# NixOS-pakettilähde
@@ -25,8 +25,8 @@
 				home-manager.useUserPackages = true;
 				home-manager.extraSpecialArgs = { inherit inputs; };
 			    home-manager.users.tapsa = import ./home.nix;
-			
-				}
+		    	}
+				
 			];
 		};
 	};
