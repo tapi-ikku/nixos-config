@@ -21,7 +21,7 @@
 				# Yhdistetään Home Manager osaksi NixOS:ää
 				home-manager.nixosModules.home-manager
 				{
-				home.manager.useGlobalPkgs = true;
+				home-manager.useGlobalPkgs = true;
 				home-manager.useUserPackages = true;
 				home-manager.extraSpecialArgs = { inherit inputs; };
 			    home-manager.users.tapsa = import ./home.nix;
