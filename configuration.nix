@@ -22,6 +22,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 7;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.graceful = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
