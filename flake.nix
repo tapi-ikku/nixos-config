@@ -1,24 +1,26 @@
 {   description = "NixOS ja Home Manager - konfiguraatio";
 
+
 	inputs = {
-	# NixOS-pakettilähde
-		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+		nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+	               
 
-		# Home Manager -syöte
-		home-manager = {
-			url = "github:nix-community/home-manager";
-			inputs.nixpkgs.follows = "nixpkgs";
-		};
-	};
-
-	outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+       home-manager.url = "github:nix-community/home-manager";
+       home-manager.inputs.nixpkgs.follows = "nixpkgs";
+			};
+			
+	outputs = {self,nixpkgs,home-manager, ... }@inputs: {
 		nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-			system = "x86_64-linux";
-			modules = [
-			# Yhdistetään nykyinenjärjestelmäkonfiguraatio
-				./configuration.nix
-
-				# Yhdistetään Home Manager osaksi NixOS:ää
+						modules = [
+				{
+				nix.settings = {
+					substituters = [ "https://cosmic.cachix.org/" ];
+					trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+				};
+			}
+		
+			./configuration.nix
+					
 				home-manager.nixosModules.home-manager
 				{
 				home-manager.useGlobalPkgs = true;
@@ -26,9 +28,10 @@
 				home-manager.extraSpecialArgs = { inherit inputs; };
 			    home-manager.users.tapsa = import ./home.nix;
 		    	}
-				
-			];
+		   ];
 		};
 	};
- }	
+  }
+  
+  	
 

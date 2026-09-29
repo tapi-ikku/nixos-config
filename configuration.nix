@@ -12,10 +12,15 @@
  nix.gc = {  
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 14d";
- };
+    options = "--delete-older-than 7d";
+     };
+
+     system.autoUpgrade.enable = true;
+     system.autoUpgrade.allowReboot = true;
+     
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 7;
   boot.loader.efi.canTouchEfiVariables = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   networking.hostName = "nixos"; # Define your hostname.
@@ -73,11 +78,21 @@
       brave
       vivaldi
       firefox
-      spotify
-      htop
-      git
+      kdePackages.kpat
+      space-cadet-pinball
       libreoffice
-      ];                          
+      supertuxkart
+      shotwell 
+      ];
+
+      programs.git = {
+      	enable = true;
+      	config = {
+      		user.name = "tapsa";
+      		user.email = "t.vanhanen.tv@gmail.com";
+      		init.defaultBranch = "main";
+      	};
+      };                          
                                  
   #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #   wget
@@ -127,6 +142,18 @@
   system.stateVersion = "26.05"; # Did you read the comment?
   services.desktopManager.cosmic.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
+  services.xserver.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;  
   services.flatpak.enable = true;
+  services.printing = {
+  	enable = true;
+  	drivers = [ pkgs.hplip ];
+  };
+  services.avahi = {
+  	enable = true;
+  	nssmdns = true;
+  	openFirewall = true;
+  };
+  
 }
 
