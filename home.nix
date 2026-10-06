@@ -26,6 +26,7 @@
 			ll = "ls-l";
 			siivoa = "nix-collect-garbage -d";
 			paivita = "sudo nix flake update && sudo nixos-rebuild switch --flake .";
+			miconf = "sudo micro /etc/nixos/configuration.nix";
 		};
 	};
 }

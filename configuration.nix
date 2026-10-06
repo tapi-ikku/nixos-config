@@ -15,8 +15,17 @@
     options = "--delete-older-than 7d";
      };
 
-     system.autoUpgrade.enable = true;
-     system.autoUpgrade.allowReboot = true;
+ nix.optimise = {
+ 	automatic = true;
+ 	dates = ["weekly"];
+ };
+
+     system.autoUpgrade = {
+     	enable = true;
+     	allowReboot = false;
+     	flake = "/etc/nixos#nixos";
+     	dates = "daily";
+     };
      
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -83,7 +92,8 @@
       space-cadet-pinball
       libreoffice
       supertuxkart
-      shotwell 
+      shotwell
+      cosmic-wallpapers 
       ];
 
       programs.git = {
