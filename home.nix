@@ -3,6 +3,7 @@
 {
 	home.username = "tapsa";
 	home.homeDirectory = "/home/tapsa";
+	home.enableNixpkgsReleaseCheck = false;
 
 	# Home Manager -versio
 	home.stateVersion = "26.05";
@@ -15,6 +16,7 @@
 		curl
 		fastfetch
 		vlc
+		impression
 	];
 
 	# Salli Home Managerin hallinnoida itseään

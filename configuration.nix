@@ -93,7 +93,8 @@
       libreoffice
       supertuxkart
       shotwell
-      cosmic-wallpapers 
+      cosmic-wallpapers
+      nixd 
       ];
 
       programs.git = {
@@ -151,10 +152,14 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "26.05"; # Did you read the comment?
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
+  # services.desktopManager.cosmic.enable = true;
+  # services.displayManager.cosmic-greeter.enable = true;
   services.xserver.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;  
+  
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
+    
   services.flatpak.enable = true;
   services.printing = {
   	enable = true;
